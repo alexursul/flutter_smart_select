@@ -56,8 +56,12 @@ class S2ChipTheme extends StatelessWidget {
     const EdgeInsetsGeometry padding = EdgeInsets.all(4.0);
 
     final Brightness brightness = Theme.of(context).brightness;
+    final bool isDark = brightness == Brightness.dark;
 
-    final Color primaryColor = color;
+    final Color primaryColor = color ??
+        (!isDark
+            ? Theme.of(context).unselectedWidgetColor
+            : ChipTheme.of(context).backgroundColor);
     final Color backgroundColor = raised == true
         ? primaryColor
         : outlined == true
